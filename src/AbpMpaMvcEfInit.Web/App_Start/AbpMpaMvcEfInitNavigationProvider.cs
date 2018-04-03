@@ -47,8 +47,35 @@ namespace AbpMpaMvcEfInit.Web
                         icon: "local_offer",
                         requiredPermissionName: PermissionNames.Pages_Roles
                     )
-                )
-                .AddItem(
+
+                ).AddItem(
+                    new MenuItemDefinition(
+                        // "CustomerList",
+                        PageNames.Customers,
+                        L("Customers"),
+                        url: "Customers",
+                        icon: "business",
+                        requiresAuthentication: true
+                    )
+               ).AddItem(
+                    new MenuItemDefinition(
+                        // "SampleBook List",
+                        PageNames.Samplebooks,
+                        L("Samplebooks"),
+                        url: "Samplebooks",
+                        icon: "business",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        // "Borret List",
+                        PageNames.Borrets,
+                        L("Borrets"),
+                        url: "Borrets",
+                        icon: "business",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
                     new MenuItemDefinition(
                         PageNames.About,
                         L("About"),
