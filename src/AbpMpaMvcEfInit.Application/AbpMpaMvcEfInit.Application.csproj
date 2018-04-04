@@ -199,6 +199,15 @@
     <Compile Include="Configuration\IConfigurationAppService.cs" />
     <Compile Include="Configuration\Ui\UiThemeInfo.cs" />
     <Compile Include="Configuration\Ui\UiThemes.cs" />
+    <Compile Include="Customers\CustomerAppService.cs" />
+    <Compile Include="Customers\CustomerDtoMapping.cs" />
+    <Compile Include="Customers\Dtos\CreateCustomerInput.cs" />
+    <Compile Include="Customers\Dtos\CustomerDto.cs" />
+    <Compile Include="Customers\Dtos\GetCustomersInput.cs" />
+    <Compile Include="Customers\Dtos\GetCustomersOutput.cs" />
+    <Compile Include="Customers\Dtos\UpdateCustomerInput.cs" />
+    <Compile Include="Customers\ICustomerAppService.cs" />
+    <Compile Include="IDtoMapping.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantDto.cs" />
     <Compile Include="MultiTenancy\Dto\EditTenantDto.cs" />
     <Compile Include="MultiTenancy\Dto\TenantDto.cs" />

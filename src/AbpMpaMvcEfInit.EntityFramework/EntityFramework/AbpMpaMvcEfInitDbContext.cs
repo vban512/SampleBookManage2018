@@ -1,7 +1,9 @@
 ﻿using System.Data.Common;
+using System.Data.Entity;
 using Abp.Zero.EntityFramework;
 using AbpMpaMvcEfInit.Authorization.Roles;
 using AbpMpaMvcEfInit.Authorization.Users;
+using AbpMpaMvcEfInit.Customers;
 using AbpMpaMvcEfInit.MultiTenancy;
 
 namespace AbpMpaMvcEfInit.EntityFramework
@@ -9,6 +11,7 @@ namespace AbpMpaMvcEfInit.EntityFramework
     public class AbpMpaMvcEfInitDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
         //TODO: Define an IDbSet for your Entities...
+        public IDbSet<Customer> Customers { get; set; }
 
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

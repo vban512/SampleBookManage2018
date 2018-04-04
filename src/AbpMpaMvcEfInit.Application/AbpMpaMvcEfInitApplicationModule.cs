@@ -9,6 +9,7 @@ using AbpMpaMvcEfInit.Authorization.Roles;
 using AbpMpaMvcEfInit.Authorization.Users;
 using AbpMpaMvcEfInit.Roles.Dto;
 using AbpMpaMvcEfInit.Users.Dto;
+using Castle.MicroKernel.Registration;
 
 namespace AbpMpaMvcEfInit
 {
@@ -17,6 +18,10 @@ namespace AbpMpaMvcEfInit
     {
         public override void PreInitialize()
         {
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
+            {
+                //Add your custom AutoMapper mappings here...
+            });
         }
 
         public override void Initialize()
@@ -24,6 +29,24 @@ namespace AbpMpaMvcEfInit
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
 
             // TODO: Is there somewhere else to store these, with the dto classes
+            //注册IDtoMapping
+            IocManager.IocContainer.Register(
+                Classes.FromAssembly(Assembly.GetExecutingAssembly())
+                    .IncludeNonPublicTypes()
+                    .BasedOn<IDtoMapping>()
+                    .WithService.Self()
+                    .WithService.DefaultInterfaces()
+                    .LifestyleTransient()
+            );
+
+            //解析依赖，并进行映射规则创建
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
+            {
+                var mappers = IocManager.IocContainer.ResolveAll<IDtoMapping>();
+                foreach (var dtomap in mappers)
+                    dtomap.CreateMapping(mapper);
+            });
+
             Configuration.Modules.AbpAutoMapper().Configurators.Add(cfg =>
             {
                 // Role and permission
